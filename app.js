@@ -1,5 +1,5 @@
 //DATA//
-const todo = [];
+let todo = [];
 //DATA//
 
 //LARY//
@@ -16,7 +16,15 @@ function add_item(item) {
     let object_item = new Item(item);
     todo.push(object_item);
 }
+//remove one element from the list
+function remove_el(item){
+    var to_remove = todo.indexOf(item);
+    todo.splice(to_remove,1);
+}
 
+function delete_all(){
+    todo = [];
+}
 //LARY//
 
 //VIEW//
@@ -35,14 +43,13 @@ function show_list(){
         $('#list').append(li);
         //addevent listener to remove
         span.addEventListener('click', (function() {
-         var to_remove = todo.indexOf(item);
-         todo.splice(to_remove,1);
+         remove_el(item);
          show_list();
      }));//addEventListener
  });//for Each
 }//show_list
 //listener for button
-$("button").click(function(){
+$("#add").click(function(){
     let new_item = $("input:text").val();
     let error_message = "You should not do nothing";
         if (new_item=="") {
@@ -54,5 +61,10 @@ $("button").click(function(){
             show_list();
         }
         // console.log(todo);
+});//click
+//listener for delete delete_all
+$("#delete").click(function(){
+        delete_all();
+        show_list();
 });//click
 //VIEW//
