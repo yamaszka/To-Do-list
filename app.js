@@ -37,6 +37,9 @@ function edit_todo(item){
         item.phone = $('#phone').val();
         item.place = $('#place').val();
         // show_edit_box(item);
+        console.log('edit_todo');
+        console.log(item.name);
+        console.log(item);
 }
 //LARY//
 
@@ -48,15 +51,28 @@ function show_edit_box(item){
     $('#person').val(item.person);
     $('#phone').val(item.phone);
     $('#place').val(item.place);
-    $("#save").click(function(){
-        edit_todo(item);
-         $('#edit').css('display','none');
-        show_list();
-        // console.log(todo);
-    });//click
+    // $("#save").click(function(){
+        // edit_todo(item);
+        //  $('#edit').css('display','none');
+        // show_list();
+        // console.log('show_edit_box');
+    // });//click
+    //EACH BUTTON HAS TO HAVE ITS OWN EVENTLISTENER!!!! I CAN NOT PUT A LOT OFLISTENERS ON THE SAME BUTTON AS ABOVE
+    $('#save').remove();
+    var button = document.createElement("button");
+     button.setAttribute("id", "save");
+     button.textContent = 'Save';
+     $('#edit').append(button);
+     button.addEventListener('click', (function() {
+         edit_todo(item);
+          $('#edit').css('display','none');
+         show_list();
+         console.log('show_edit_box');
+  }));//addEventListener
 }
 //show the list from array
 function show_list(){
+    console.log('show_list');
     //clean list
     $('#list').html('');
     var array = get_todo();
