@@ -8,14 +8,16 @@
 
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
 
   </head>
 
   <body>
+
     <div id="content">
       <h1>TODO list &#9824;</h1>
 
-      <div id="edit">
+      <div id="edit" class="scale-in-top">
           Item: <input type="text" id="name"></input><br>
           Time: <input type="text" id="time"></input><br>
           Name: <input type="text" id="person"></input><br>
@@ -25,22 +27,17 @@
           <button id="save">Save</button>
       </div>
 
+      <div class="cover scale-in-hor-center"></div>
+
      <input type="text" id="input"></input>
      <button id="add">ADD</button>
 
 <div id="error"></div>
 
 <ul id="list">
-<li>item &#11607; remove</li>
-<li>item \u2D57 remove</li>
-    <ul>
-        <li>Time: 30</li>
-        <li>Where to go: plac</li>
-    </ul>
-<li>item \u2D57 remove</li>
 </ul><!-- list      -->
 
-<!-- <button id="delete">Delete all</button> -->
+<button id="delete">Delete all</button>
 
 </div><!-- content -->
  <script src="app.js"></script>

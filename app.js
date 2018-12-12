@@ -67,6 +67,7 @@ function show_edit_box(item){
      button.addEventListener('click', (function() {
          edit_todo(item);
           $('#edit').css('display','none');
+          $('.cover').css('display','none');
          show_list();
          console.log('show_edit_box');
   }));//addEventListener
@@ -82,17 +83,18 @@ function show_list(){
         //add span remove element
         var span = document.createElement("span");
          span.setAttribute("class", "remove");
-         span.textContent = ' 	remove';
+         span.innerHTML = '<i class="fas fa-trash icon"></i>';
          //add span edit createElement
          var span1 = document.createElement("span");
           span1.setAttribute("class", "edit");
-          span1.textContent = ' 	\u2D57';
+          span1.innerHTML = '<i class="far fa-edit icon"></i>';
         var textnode = document.createTextNode(item.name);
         li.appendChild(textnode);
         li.appendChild(span1);
         li.appendChild(span);
                 //create child list
                 var ul = document.createElement("ul");
+                 ul.setAttribute("id", "inner_list");
                     if(item.time!=""){
                         var t_li = document.createElement("LI");
                         var t_text = document.createTextNode('Time '+item.time);
@@ -129,21 +131,26 @@ function show_list(){
      //addevent listener to edit
      span1.addEventListener('click', (function() {
          $('#edit').css('display','block');
+         $('.cover').css('display','block');
          show_edit_box(item);
   }));//addEventListener
  });//for Each
  //crete delete button only if to do list has at least one item
  if(todo.length>0){
- var d_button = document.createElement("button");
-  d_button.setAttribute("id", "delete");
-  d_button.textContent = 'Delete all';
-    $('#content').append(d_button);
+   $('#delete').css('display','block');
+ // var d_button = document.createElement("button");
+ //  d_button.setAttribute("id", "delete");
+ //  d_button.textContent = 'Delete all';
+ //    $('#content').append(d_button);
   //listener for delete delete_all (then using jQuery that does not work)
-  d_button.addEventListener('click', (function() {
-    delete_all();
-    show_list();
-    d_button.remove();
-}));//addEventListener
+//   d_button.addEventListener('click', (function() {
+    // delete_all();
+    // show_list();
+//     d_button.remove();
+// }));//addEventListener
+}
+else {
+  $('#delete').css('display','none');
 }
 
 }//show_list
@@ -164,5 +171,11 @@ $("#add").click(function(){
 
 $('#back').click(function(){
      $('#edit').css('display','none');
+     $('.cover').css('display','none');
+});
+
+$('#delete').click(function(){
+  delete_all();
+  show_list();
 });
 //VIEW//
