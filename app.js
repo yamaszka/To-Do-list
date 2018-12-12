@@ -24,6 +24,7 @@ function remove_el(item){
 
 function delete_all(){
     todo = [];
+    console.log(todo);
 }
 
 function get_todo(){
@@ -131,11 +132,20 @@ function show_list(){
          show_edit_box(item);
   }));//addEventListener
  });//for Each
- //crete delete button
+ //crete delete button only if to do list has at least one item
+ if(todo.length>0){
  var d_button = document.createElement("button");
   d_button.setAttribute("id", "delete");
   d_button.textContent = 'Delete all';
-    $('#list').append(d_button);
+    $('#content').append(d_button);
+  //listener for delete delete_all (then using jQuery that does not work)
+  d_button.addEventListener('click', (function() {
+    delete_all();
+    show_list();
+    d_button.remove();
+}));//addEventListener
+}
+
 }//show_list
 //listener for button
 $("#add").click(function(){
@@ -150,11 +160,6 @@ $("#add").click(function(){
             show_list();
         }
         // console.log(todo);
-});//click
-//listener for delete delete_all
-$("#delete").click(function(){
-        delete_all();
-        show_list();
 });//click
 
 $('#back').click(function(){
