@@ -117,7 +117,9 @@ function show_list(){
                         ul.appendChild(pl_li);
                     }//if
                 li.appendChild(ul);
-        $('#list').append(li);
+
+                 $('#list').append(li);
+
         //addevent listener to remove
         span.addEventListener('click', (function() {
          remove_el(item);
@@ -128,8 +130,12 @@ function show_list(){
          $('#edit').css('display','block');
          show_edit_box(item);
   }));//addEventListener
-
  });//for Each
+ //crete delete button
+ var d_button = document.createElement("button");
+  d_button.setAttribute("id", "delete");
+  d_button.textContent = 'Delete all';
+    $('#list').append(d_button);
 }//show_list
 //listener for button
 $("#add").click(function(){
